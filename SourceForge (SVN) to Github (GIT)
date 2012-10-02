@@ -37,14 +37,14 @@ To do a migration you will need a system that allows you to install Ruby, Ruby G
   
 **Installation Steps**
 > *   In your home directory create a folder and give it a name that related to the project  
-        `mkdir ~/swobjects_svn`
+        `mkdir ~/myproject_svn`
 > *   Go to the directory you just created  
-        `cd ~/swobjects_svn`
+        `cd ~/myproject_svn`
 > *   Copy the project from sourceforge using rsync  
         `$ rsync -av {project name}.svn.sourceforge.net::svn/{project name}/* .`  
-        `e.g. $ rsync -av swobjects.svn.sourceforge.net::svn/swobjects/* .`
+        `e.g. $ rsync -av myproject.svn.sourceforge.net::svn/myproject/* .`
 > *   Generate the authors list from the SVN repository (this list can be placed in any folder, so I put it in the home directory)  
-        `$ svn log -q https://swobjects.svn.sourceforge.net/svnroot/swobjects | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" <"$2">"}' | sort -u > ~/authors.txt`
+        `$ svn log -q https://myproject.svn.sourceforge.net/svnroot/myproject | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" <"$2">"}' | sort -u > ~/authors.txt`
 > *   What you get as an authors file should look like this:  
         `somebody1 = somebody1 <somebody1>`  
         `somebody2 = somebody2 <somebody2>`  
@@ -54,14 +54,14 @@ To do a migration you will need a system that allows you to install Ruby, Ruby G
         `somebody2 = John Alexender <alex@smellyfoot.org>`  
         `....`
 > *   Create a new directory for the Git repository and initialize it  
-        `mkdir ~/SWObjects`  
-        `cd ~/SWObjects`  
+        `mkdir ~/myproject`  
+        `cd ~/myproject`  
         `git init`
 > *   Run the svn2git command while in the git repository directory you just created  
-        `$ svn2git file:///home/mickymouse/swobjects_svn/ --authors ~/authors.txt -v` 
+        `$ svn2git file:///home/mickymouse/myproject_svn/ --authors ~/authors.txt -v` 
         if your trunk, branches and tags are not in the root folder of your SVN repository, you will need to specify them like this:
-        `$ svn2git file:///home/mickymouse/swobjects_svn/ --trunk {path/to/trunk} --branches {path/to/branches} --tags {path/to/tags} --authors ~/authors.txt -v`  
-        `e.g. $ svn2git file:///home/mickymouse/swobjects_svn/ --trunk sparql/trunk --branches sparql/branches --tags sparql/tags --authors ~/authors.txt -v` 
+        `$ svn2git file:///home/mickymouse/myproject_svn/ --trunk {path/to/trunk} --branches {path/to/branches} --tags {path/to/tags} --authors ~/authors.txt -v`  
+        `e.g. $ svn2git file:///home/mickymouse/myproject_svn/ --trunk sparql/trunk --branches sparql/branches --tags sparql/tags --authors ~/authors.txt -v` 
         For other ways you can run the svn2git command check [here](https://github.com/nirvdrum/svn2git/blob/master/README.markdown).  
         
         Note:   
