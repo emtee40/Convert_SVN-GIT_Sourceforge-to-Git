@@ -1,4 +1,4 @@
-To do a migration you will need a system that allows you to install Ruby, Ruby Gems and Git. We are performing this installation on a CentOS 6 box.  
+To do a migration you will need a system that allows you to install Ruby, Ruby Gems and Git. We are running the entire process on a CentOS 6 box.  
   
 **Preparation**
 > *   Install svn2git. Need to be administrator or have sudo rights.  
